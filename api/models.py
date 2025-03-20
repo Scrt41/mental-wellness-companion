@@ -1,15 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class MoodEntry(models.Model):
-    user_id = models.IntegerField()  # In a real app, use a User model
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  
     mood = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
     notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.user_id} - {self.mood} on {self.date}"
+
 class MoodAnalytics(models.Model):
-    user_id = models.IntegerField()  # In a real app, use a User model
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     mood = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
     activity = models.CharField(max_length=100, blank=True, null=True)
@@ -21,6 +23,7 @@ class MindfulnessExercise(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     stress_level = models.CharField(max_length=50)
+    is_challenge = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -39,3 +42,12 @@ class VideoResource(models.Model):
 
     def __str__(self):
         return self.title
+
+class Resource(models.Model):
+    TYPE_CHOICES = [
+        ('helpline', 'Helpline'),
+        ('quote', 'Quote'),
+        # Add other types as needed
+    ]
+    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    content = models.TextField()
