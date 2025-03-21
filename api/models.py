@@ -51,3 +51,27 @@ class Resource(models.Model):
     ]
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
     content = models.TextField()
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    feedback = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback from {self.user.username} on {self.created_at}"
+
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    notification_time = models.TimeField()  # Store time for notifications
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Notification for {self.user.username} at {self.notification_time}"
+
+class PeerConnection(models.Model):
+    user = models.ForeignKey(User, related_name='user_connections', on_delete=models.CASCADE)
+    peer = models.ForeignKey(User, related_name='peer_connections', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} connected with {self.peer.username}"

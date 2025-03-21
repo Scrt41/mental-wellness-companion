@@ -162,7 +162,7 @@ def mood_summary(request):
 # 12. Mindfulness Challenges
 @api_view(['GET'])
 def mindfulness_challenges(request):
-    challenges = MindfulnessExercise.objects.filter(is_challenge=True)  # Ensure this field exists
+    challenges = MindfulnessExercise.objects.filter(is_challenge=True)  
     serializer = MindfulnessExerciseSerializer(challenges, many=True)
     return Response(serializer.data)
 
@@ -195,11 +195,11 @@ def mindfulness_quotes(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def mood_feedback(request):
-    feedback = request.data.get('feedback')
+    feedback_text = request.data.get('feedback')
     user = request.user
 
-    # Save feedback logic (you may want to create a Feedback model)
-    # For now, we'll just return a success message
+    # Save feedback
+    feedback = Feedback.objects.create(user=user, feedback=feedback_text)
     return Response({'message': 'Feedback received successfully!'}, status=status.HTTP_201_CREATED)
 
 #17. Meditation Notifications
@@ -209,8 +209,8 @@ def meditation_notifications(request):
     notification_time = request.data.get('notification_time')
     user = request.user
 
-    # Logic to save notification time (you may want to create a Notification model)
-    # For now, we'll just return a success message
+    # Save notification time
+    Notification.objects.create(user=user, notification_time=notification_time)
     return Response({'message': 'Notification set successfully!'}, status=status.HTTP_201_CREATED)
 
 #18. Peer Connect
@@ -220,9 +220,13 @@ def peer_connect(request):
     peer_id = request.data.get('peer_id')  # ID of the user to connect with
     user = request.user
 
-    # Logic to connect users (you may want to create a PeerConnection model)
-    # For now, we'll just return a success message
-    return Response({'message': f'Connected with user {peer_id} successfully!'}, status=status.HTTP_201_CREATED)
+    try:
+        peer_user = User.objects.get(id=peer_id)
+        # Create a peer connection
+        PeerConnection.objects.create(user=user, peer=peer_user)
+        return Response({'message': f'Connected with user {peer_user.username} successfully!'}, status=status.HTTP_201_CREATED)
+    except User.DoesNotExist:
+        return Response({'error': 'User  does not exist'}, status=status.HTTP_400_BAD_REQUEST)
 
 #19. Resources: Podcasts
 @api_view(['GET'])
