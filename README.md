@@ -6,7 +6,7 @@ This document provides detailed information about each endpoint in the Mindfulne
 ## 1. User Registration
 
 - **Method**: POST
-- **URL**: `http://127.0.0.1:8000/auth/register/`
+- **URL**: `http://127.0.0.1:8000/api/auth/register/`
 - **Body** (JSON):
   ```json
   {
@@ -16,7 +16,7 @@ This document provides detailed information about each endpoint in the Mindfulne
 
 ## 2. User Login
 - **Method**: POST
-- **URL**: `http://127.0.0.1:8000/auth/login/`
+- **URL**: `http://127.0.0.1:8000/api/uth/login/`
 - **Body** (JSON):
  ```json
 {
@@ -26,8 +26,8 @@ This document provides detailed information about each endpoint in the Mindfulne
 ```
 ## 3. Get Guided Meditations
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/mindfulness/meditations/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/mindfulness/meditations/`
+- **Response**:
 ```json
 [
     {"id": 1, "title": "Stress Relief Meditation", "duration": "10 min"},
@@ -36,10 +36,10 @@ Response:
 ```
 ## 4. Log Mood Entry
 - **Method**: POST
-- **URL**: http://127.0.0.1:8000/mood/track/
-Headers:
-Authorization: Token <your_token_here>
-Body (JSON):
+- **URL**: `http://127.0.0.1:8000/api/mood/track/`
+- **Headers**:
+- **Authorization**: Token <your_token_here>
+- **Body** (JSON):
 ```json
 {
     "mood": "happy",
@@ -48,14 +48,14 @@ Body (JSON):
 ```
 ## 5. Get Mood Analytics
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/mood/analytics/
-Headers:
-Authorization: Token <your_token_here>
+- **URL**: `http://127.0.0.1:8000/api/mood/analytics/`
+- **Headers**:
+- **Authorization**: Token <your_token_here>
 
 ## 6. Get Articles on Mental Health
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/resources/articles/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/resources/articles/`
+- **Response**:
 ```json
 [
     {"id": 1, "title": "Understanding Anxiety", "url": "https://example.com/anxiety"},
@@ -64,8 +64,8 @@ Response:
 ```
 ## 7. Get Community Support Groups
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/support/community/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/support/community/`
+- **Response**:
 ```json
 [
     {"id": 1, "name": "Anxiety Support Group", "platform": "Discord"},
@@ -74,8 +74,8 @@ Response:
 ```
 ## 8. Get Daily Wellness Tips
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/wellness/tips/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/wellness/tips/`
+- **Response**:
 ```json
 [
     {"id": 1, "tip": "Take a 5-minute break to breathe deeply."},
@@ -84,20 +84,20 @@ Response:
 ```
 ## 9. Get Mood Summary
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/mood/summary/
-Headers:
-Authorization: Token <your_token_here>
+- **URL**: `http://127.0.0.1:8000/api/mood/summary/`
+- **Headers**:
+- **Authorization**: Token <your_token_here>
 
 ## 10. Get Mood Alerts
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/mood/alerts/
-Headers:
-Authorization: Token <your_token_here>
+- **URL**: `http://127.0.0.1:8000/api/mood/alerts/`
+- **Headers**:
+- **Authorization**: Token <your_token_here>
 
 ## 11. Get Mental Health FAQs
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/mental-health/faq/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/mental-health/faq/`
+- **Response**:
 ```json
 [
     {"question": "What is anxiety?", "answer": "Anxiety is..."},
@@ -106,8 +106,8 @@ Response:
 ```
 ## 12. Get Weather Mood Insights
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/weather/mood-insights/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/weather/mood-insights/`
+- **Response**:
 ```json
 {
     "sunny": "You might feel more energetic and positive.",
@@ -116,8 +116,8 @@ Response:
 ```
 ## 13. Get Video Resources
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/resources/videos/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/resources/videos/`
+- **Response**:
 ```json
 [
     {"id": 1, "title": "Mindfulness Video", "url": "https://example.com/video1"},
@@ -126,8 +126,8 @@ Response:
 ```
 ## 14. Get Mindfulness Challenges
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/mindfulness/challenges/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/mindfulness/challenges/`
+- **Response**:
 ```json
 [
     {"id": 1, "title": "30-Day Mindfulness Challenge", "description": "A challenge to practice mindfulness daily."}
@@ -135,8 +135,8 @@ Response:
 ```
 ## 15. Get Mindfulness Quotes
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/mindfulness/quotes/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/mindfulness/quotes/`
+- **Response**:
 ```json
 [
     {"id": 1, "content": "The mind is everything. What you think you become."},
@@ -145,10 +145,10 @@ Response:
 ```
 ## 16. Submit Mood Feedback
 - **Method**: POST
-- **URL**: http://127.0.0.1:8000/mood/feedback/
-Headers:
-Authorization: Token <your_token_here>
-Body (JSON):
+- **URL**: `http://127.0.0.1:8000/api/mood/feedback/`
+- **Headers**:
+- **Authorization**: Token <your_token_here>
+- **Body** (JSON):
 ```json
 {
     "feedback": "This app is really helpful!"
@@ -156,10 +156,10 @@ Body (JSON):
 ```
 ## 17. Set Meditation Notifications
 - **Method**: POST
-- **URL**: http://127.0.0.1:8000/meditation/notifications/
-Headers:
-Authorization: Token <your_token_here>
-Body (JSON):
+- **URL**: `http://127.0.0.1:8000/api/meditation/notifications/`
+- **Headers**:
+- **Authorization**: Token <your_token_here>
+- **Body** (JSON):
 ```json
 {
     "notification_time": "08:00"
@@ -167,10 +167,10 @@ Body (JSON):
 ```
 ## 18. Connect with Peers
 - **Method**: POST
-- **URL**: http://127.0.0.1:8000/support/peer-connect/
-Headers:
-Authorization: Token <your_token_here>
-Body (JSON):
+- **URL**: `http://127.0.0.1:8000/api/support/peer-connect/`
+- **Headers**:
+- **Authorization**: Token <your_token_here>
+- **Body** (JSON):
 ```json
 {
     "peer_id": 2  // Replace with the actual user ID you want to connect with
@@ -178,8 +178,8 @@ Body (JSON):
 ```
 ## 19. Get Resources: Podcasts
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/resources/podcasts/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/resources/podcasts/`
+- **Response**:
 ```json
 [
     {"id": 1, "title": "Mental Health Podcast", "url": "https://example.com/podcast1"},
@@ -188,8 +188,8 @@ Response:
 ```
 ## 20. Get Resources: Assessment Tools
 - **Method**: GET
-- **URL**: http://127.0.0.1:8000/resources/assessment-tools/
-Response:
+- **URL**: `http://127.0.0.1:8000/api/resources/assessment-tools/`
+- **Response**:
 ```json
 [
     {"id": 1, "title": "Anxiety Assessment", "url": "https://example.com/anxiety-assessment"},
