@@ -7,14 +7,14 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .models import MoodEntry, MoodAnalytics, MindfulnessExercise, FAQ, VideoResource, Resource
+from .models import MoodEntry, MoodAnalytics, MindfulnessExercise, FAQ, VideoResource, Resource, Feedback, Notification, PeerConnection
 from .serializers import (
     MoodEntrySerializer,
     MoodAnalyticsSerializer,
     MindfulnessExerciseSerializer,
     FAQSerializer,
     VideoResourceSerializer,
-    ResourceSerializer,  # Assuming you have a ResourceSerializer for helplines and quotes
+    ResourceSerializer,  
 )
 
 # User Serializer
@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User(**validated_data)
-        user.set_password(validated_data['password'])  # Hash the password
+        user.set_password(validated_data['password'])  
         user.save()
         return user
 
@@ -66,7 +66,7 @@ def get_meditations(request):
 class MoodEntryListCreate(generics.ListCreateAPIView):
     queryset = MoodEntry.objects.all()
     serializer_class = MoodEntrySerializer
-    permission_classes = [IsAuthenticated]  # Only authenticated users can access this view
+    permission_classes = [IsAuthenticated] 
 
 # 3. Access educational articles on mental health topics
 @api_view(['GET'])
@@ -217,7 +217,7 @@ def meditation_notifications(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def peer_connect(request):
-    peer_id = request.data.get('peer_id')  # ID of the user to connect with
+    peer_id = request.data.get('peer_id') 
     user = request.user
 
     try:

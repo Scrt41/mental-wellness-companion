@@ -38,7 +38,6 @@ class VideoResourceSerializer(serializers.ModelSerializer):
         model = VideoResource
         fields = '__all__'
 
-# New Resource Serializer
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resource

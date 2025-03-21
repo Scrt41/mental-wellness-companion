@@ -62,7 +62,7 @@ class Feedback(models.Model):
 
 class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    notification_time = models.TimeField()  # Store time for notifications
+    notification_time = models.TimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
